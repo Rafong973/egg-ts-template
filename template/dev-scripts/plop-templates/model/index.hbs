@@ -1,0 +1,26 @@
+import { Model, Table, Column, CreatedAt, UpdatedAt, DeletedAt } from 'sequelize-typescript';
+
+@Table({
+modelName: '{{ tableName }}',
+paranoid: true
+})
+class {{ name }} extends Model<{{ name }}> {
+  @Column({
+    primaryKey: true
+  })
+  id: number;
+
+  @CreatedAt
+  @Column
+  createdAt: Date;
+
+  @UpdatedAt
+  @Column
+  updatedAt: Date;
+
+  @DeletedAt
+  @Column
+  deletedAt: Date;
+  }
+
+  export default () => {{ name }};

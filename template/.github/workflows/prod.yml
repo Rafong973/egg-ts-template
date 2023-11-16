@@ -1,0 +1,38 @@
+name: develop
+
+env:
+  PROJECT_NAME: '<%= projectName %>'
+  VERSION: prod-01
+
+on:
+  pull_request:
+    branches: [ release ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Git Source
+        uses: actions/checkout@v2
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      -
+        name: Use Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - run: docker login --username=meiway1024 registry.cn-shenzhen.aliyuncs.com -u meiway1024 -p MEIWAYmeiway1024
+      - run: docker build -t ${{ env.PROJECT_NAME }}:${{ env.VERSION }} -f Dockerfile.prod .
+      - run: docker tag ${{ env.PROJECT_NAME }}:${{ env.VERSION }} registry.cn-shenzhen.aliyuncs.com/meiwei/${{ env.PROJECT_NAME }}:${{ env.VERSION }}
+      - run: docker push registry.cn-shenzhen.aliyuncs.com/meiwei/${{ env.PROJECT_NAME }}:${{ env.VERSION }}
+      - name: Set K8s context
+        uses: aliyun/ack-set-context@v1
+        with:
+          access-key-id: LTAI5tMPAtxLdbrjgcduoygf
+          access-key-secret: IESCacfleVCR6tvztTyUlhz3gUS9yX
+          cluster-id: cda9d687c6f764231b43e3f0db2f4e2d7
+      - run: python3 script/k8s_deployment.py ${{ env.PROJECT_NAME }} ${{ env.VERSION }}
+      - run: python3 script/k8s_service.py ${{ env.PROJECT_NAME }} ${{ env.VERSION }}
+      - run: python3 script/k8s_ingress.py ${{ env.PROJECT_NAME }} ${{ env.VERSION }}

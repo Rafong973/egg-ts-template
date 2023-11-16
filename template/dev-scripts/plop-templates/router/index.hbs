@@ -1,0 +1,12 @@
+require('module-alias/register');
+import BaseController from '@base/baseController';
+import { HwController } from '@lib/hwRouter';
+const __CURCONTROLLER = __filename.substr(__filename.indexOf('/app/controller')).replace('/app/controller',
+'').split('.')[0].toLowerCase();
+
+import {} from '@schema/controller/{{ path }}';
+import { Validate } from 'class-validator-helper';
+
+@HwController(__CURCONTROLLER)
+export default class {{ name }}Controller extends BaseController {
+}
