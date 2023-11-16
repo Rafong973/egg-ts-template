@@ -29,9 +29,9 @@ export interface BizConfig {
 export function getSqlConfig(options: sequelizeOptions) {
   const baseConfig = {
     dialect: 'mysql',
-    host: process.env.MYSQL_HOST || '47.115.48.3',
-    username: process.env.MYSQL_USERNAME || 'root',
-    password: process.env.MYSQL_PASSWORD || '123abcRoot',
+    host: '127.0.0.1',
+    username: 'root',
+    password: '',
     port: 3306,
     timezone: '+08:00',
     define: {

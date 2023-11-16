@@ -32,9 +32,6 @@ export default class FooBoot implements IBoot {
 
   async serverDidReady() {
     // Server is listening.
-    const config = this.app.config
-
-    console.log(config)
   }
 
   async beforeClose() {
