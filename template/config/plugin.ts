@@ -2,11 +2,11 @@ import { EggPlugin } from 'egg'
 
 const plugin: EggPlugin = {
   sequelize: {
-    enable: true,
+    enable: false,
     package: 'egg-sequelize-ts'
   },
   redis: {
-    enable: true,
+    enable: false,
     package: 'egg-redis'
   },
   cors: {

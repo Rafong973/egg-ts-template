@@ -1,4 +1,4 @@
-import { Context } from 'egg'
+import { Context, ClientErrorResponse } from 'egg'
 import { returnBody } from '../../typings/index'
 
 export default function errorMiddle() {
@@ -29,8 +29,9 @@ export default function errorMiddle() {
           code: 0
         }
       )
-    } catch (err: unknown) {
-      let error = err as returnBody
+    } catch (err) {
+      let error = err
+      console.log(err)
       if (typeof err === 'function') {
         const obj = err()
         // 是自定义错误，自定义错误可能是函数
@@ -39,24 +40,24 @@ export default function errorMiddle() {
         }
       }
 
-      if (error.type === 'business') {
+      if ((error as returnBody).type === 'business') {
         // 自定义的业务错误
         ctx.logger.error(error)
         ctx.body = Object.assign(
           {
             payload: ctx.body || {}
           },
-          error.data
+          (error as returnBody).data
         )
-      } else if (error.type === 'system') {
+      } else if ((error as returnBody).type === 'system') {
         // 自定义的系统错误
         ctx.logger.error(error)
-        ctx.status = error.statusCode
+        ctx.status = (error as returnBody).statusCode
         ctx.body = Object.assign(
           {
             payload: ctx.body || {}
           },
-          error.data
+          (error as returnBody).data
         )
       } else {
         // 非自定义错误
@@ -68,7 +69,7 @@ export default function errorMiddle() {
           {
             payload: ctx.body || {}
           },
-          { code: 500, msg: error.message }
+          { code: 500, msg: (error as returnBody).message }
         )
       }
     }

@@ -1,22 +1,23 @@
 function compose(...key: Array<string | number>) {
-  return ['<%= projectName -%>', ...key].join(':');
+  return ['<%= projectName -%>', ...key].join(':')
 }
 
 /**
  * wx相关
  */
 compose.wx = function (...key: Array<string | number>) {
-  return this('wx', ...key);
-};
+  return this('wx', ...key)
+}
 
 export default {
+  verificationLoginCode: (phone: string, type: string) => compose('verificationLoginCode', phone + type), // 验证码
   injectEntrance: (entrance: string) => compose('entrance', entrance), // 配置入口
   wx: {
     accessToken: (appid: string) => compose.wx('accessToken', appid), // 缓存微信accessToken,
     ticketKey: (appid: string) => compose.wx('ticketKey', appid),
     refreshUserToken: (appid: string, openId: string) => compose.wx('refreshUserToken', appid, openId), // 用于刷新用户accessToken
-    userToken: (appid: string, openId: string) => compose.wx('userToken', appid, openId), // 用于获取用户信息的accessToken
+    userToken: (appid: string, openId: string) => compose.wx('userToken', appid, openId) // 用于获取用户信息的accessToken
   },
   verificationCode: (phone: string) => compose('verificationCode', phone), // 验证码
   gameConfig: () => compose('gameConfig')
-};
+}
