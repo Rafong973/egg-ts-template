@@ -31,9 +31,12 @@
     "@types/validator": "^10.11.3",
     "ali-oss": "^6.3.1",
     "axios": "^0.24.0",
+    "class-transformer": "^0.4.0",
+    "class-validator": "^0.13.1",
+    "class-validator-helper": "^0.0.4",
     "cross-blob": "^1.2.0",
     "crypto": "^1.0.1",
-    "dayjs": "^1.10.6",
+    "dayjs": "^1.11.10",
     "egg": "^3.17.5",
     "egg-cors": "^2.2.3",
     "egg-logrotator": "^3.1.0",
@@ -52,10 +55,7 @@
     "sequelize-cli": "^5.5.1",
     "sequelize-typescript": "^1.0.0",
     "tencentcloud-sdk-nodejs": "^3.0.110",
-    "uuid": "^3.3.3",
-    "class-transformer": "^0.4.0",
-    "class-validator": "^0.13.1",
-    "class-validator-helper": "^0.0.4"
+    "uuid": "^3.3.3"
   },
   "devDependencies": {
     "@types/ali-oss": "^6.0.4",

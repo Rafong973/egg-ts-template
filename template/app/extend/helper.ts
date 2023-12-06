@@ -1,19 +1,23 @@
+import qs from 'qs'
+import uuid from 'uuid'
+import crypto from 'crypto'
+import dayjs, { Dayjs } from 'dayjs'
+import jsonwebtoken from 'jsonwebtoken'
 import { SignOptions, Secret } from 'jsonwebtoken'
-const crypto = require('crypto')
-const qs = require('qs')
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter'
 
-const dayjs = require('dayjs')
-const uuid = require('uuid')
-const jsonwebtoken = require('jsonwebtoken')
+dayjs.extend(isSameOrBefore)
+dayjs.extend(isSameOrAfter)
 
 export default {
   formatTime(time: any = new Date(), format: string = 'YYYY-MM-DD HH:mm:ss') {
     return dayjs(time).format(format)
   },
-  isSameOrBefore(referenceTime: string, time: string = dayjs()) {
-    return dayjs(time).isSameOrBefore(referenceTime)
+  isSameOrBefore(referenceTime: string, time: Dayjs = dayjs()) {
+    return dayjs(time)?.isSameOrBefore(referenceTime)
   },
-  isSameOrAfter(referenceTime: string, time: string = dayjs()) {
+  isSameOrAfter(referenceTime: string, time: Dayjs = dayjs()) {
     return dayjs(time).isSameOrAfter(referenceTime)
   },
   uuid() {

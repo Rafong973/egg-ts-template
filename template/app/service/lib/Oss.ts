@@ -1,10 +1,9 @@
 require('module-alias/register')
 import BaseService from '@base/baseService'
 import { Context } from 'egg'
-import * as oss from 'ali-oss'
-import OSS = require('ali-oss')
+import OSS from 'ali-oss'
 import * as fs from 'fs'
-const images = require('images')
+import images from 'images'
 
 export default class OssService extends BaseService {
   private ossConfig = this.app.config.aliyun.oss
@@ -13,7 +12,7 @@ export default class OssService extends BaseService {
 
   constructor(ctx: Context) {
     super(ctx)
-    this.store = new oss({
+    this.store = new OSS({
       accessKeyId: this.ossConfig.accessKeyId,
       accessKeySecret: this.ossConfig.accessKeySecret,
       bucket: this.ossConfig.bucket,

@@ -26,12 +26,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.24hw.cn/custom-backend/egg-ts-template.git"
+    "url": "git+git@github.com:Rafong973/egg-ts-template.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://gitlab.24hw.cn/custom-backend/egg-ts-template/issues"
+    "url": "https://github.com/Rafong973/egg-ts-template/issues"
   },
-  "homepage": "https://gitlab.24hw.cn/custom-backend/egg-ts-template#readme"
+  "homepage": "https://github.com/Rafong973/egg-ts-template#readme"
 }
