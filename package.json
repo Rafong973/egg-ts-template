@@ -1,6 +1,6 @@
 {
   "name": "@rafong/egg-template",
-  "version": "1.0.4.1",
+  "version": "0.0.1",
   "description": "egg+ts通用脚手架",
   "main": "index.js",
   "bin": {
