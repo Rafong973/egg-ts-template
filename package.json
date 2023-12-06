@@ -3,7 +3,9 @@
   "version": "1.0.4.1",
   "description": "egg+ts通用脚手架",
   "main": "index.js",
-  "bin": "cli.js",
+  "bin": {
+    "create-egg": "cli.js"
+  },
   "files": [
     "cli.js",
     "saofile.js",
