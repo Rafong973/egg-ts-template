@@ -1,4 +1,4 @@
-import { Context, ClientErrorResponse } from 'egg'
+import { Context } from 'egg'
 import { returnBody } from '../../typings/index'
 
 export default function errorMiddle() {
